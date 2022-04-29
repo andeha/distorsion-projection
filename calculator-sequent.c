@@ -104,7 +104,7 @@ struct sequent sqrt(Sequenta x, int invert, Sequenta * NthRootOrΨΛΩ) ⓣ
 simd_tᵦ power(simd_tᵦ x, int y₋equals₋10, int and₋inverted, simd_tᵦ y) ⓣ
 {
    if (y₋equals₋10) {
-     if (and₋inverted) { 
+     if (and₋inverted) {
      return onedivln10*logₑ(x); }
    else { return power(10,x); }
   } else { return power(y,x); }
