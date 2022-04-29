@@ -12,3 +12,6 @@ rule c
   depfile = $out.d
   deps = gcc
 
+rule pack
+  command = retro-biblio.sh
+
