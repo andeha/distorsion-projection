@@ -1,0 +1,22 @@
+#  bld_mz-and-mm.ninja | math routines for pic32mm and pic32mz a․𝘬․a 𝙨𝙢𝙖𝙡𝙡.
+
+archive = distorsion
+
+objs = ./.objs/7703a312-559A-42ca-A992-eabcf8f87663_$archive
+sha1git = `git log -1 '--pretty=format:%h'`
+cflags = -DSHA1GIT=\"$sha1git\"
+
+rule c
+  command = ../clang $cflags -c $in -o $out
+  description = C2x $out
+  depfile = $out.d
+  deps = gcc
+
+rule assemble
+  command = ../Projects/retro-biblio.sh
+
+build $objs/calculator-sequent.o: c calculator-sequent.c
+build $objs/experi-concentrat.o: c experi-concentra.c
+build $archive: $objs/experi-concentrat.o $objs/calculator-sequent.o
+default sion-tion.a
+

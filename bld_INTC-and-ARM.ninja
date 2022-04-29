@@ -1,0 +1,8 @@
+#  bld_INTE-and-ARM.ninja | a math library for macos a․𝘬․a 𝙗𝙝𝙞𝙟𝙜.
+
+archive = distortion
+
+objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$archive
+sha1git = `git log -1 '--pretty=format:%h'`
+cflags = -DSHA1GIT=\"$sha1git\"
+
