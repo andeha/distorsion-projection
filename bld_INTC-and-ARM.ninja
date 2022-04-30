@@ -15,3 +15,7 @@ rule c
 rule pack
   command = retro-biblio.sh
 
+build $objs/calculat-sequent.o: c calculat-sequent.c
+build $archive: $objs/calculat-sequent.o
+default notos
+

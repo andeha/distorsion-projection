@@ -13,10 +13,9 @@ rule c
   deps = gcc
 
 rule assemble
-  command = ../Projects/retro-biblio.sh
+  command = retro-biblio.sh
 
-build $objs/calculator-sequent.o: c calculator-sequent.c
-build $objs/experi-concentrat.o: c experi-concentra.c
-build $archive: $objs/experi-concentrat.o $objs/calculator-sequent.o
+build $objs/calculat-sequent.o: c calculat-sequent.c
+build $archive: $objs/calculat-sequent.o
 default sion-tion.a
 
