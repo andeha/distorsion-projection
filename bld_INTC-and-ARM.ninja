@@ -13,7 +13,7 @@ rule c
   deps = gcc
 
 rule pack
-  command = retro-biblio.sh
+  command = retro-biblio.sh $objs/calculat-sequent.o 
 
 build $objs/calculat-sequent.o: c calculat-sequent.c
 build $archive: $objs/calculat-sequent.o
