@@ -52,9 +52,9 @@ else
     builtin echo "For Intel Mac and Arm Mac"
   fi
   builtin typeset -a UNISON=distorsion-projection_intc
-  ninja -f bld_INTC-and-ARM.ninja
+  ninja -f bld_intc-and-arm.ninja
   builtin typeset -a UNISON=projection-distorsion_arm
-  ninja -f bld_INTC-and-ARM.ninja
+  ninja -f bld_intc-and-arm.ninja
   lipo -create -output libTown.a libdistorsion-projection_intel.a               \
    libprojection-distorsion_arm.a
 fi
