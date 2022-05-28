@@ -1,21 +1,22 @@
 #  bld_INTE-and-ARM.ninja | a math library for macos a․𝘬․a 𝙗𝙝𝙞𝙟𝙜.
 
-archive = distortion
+archive = lib{$UNISON}.a
 
 objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$archive
 sha1git = `git log -1 '--pretty=format:%h'`
 cflags = -DSHA1GIT=\"$sha1git\"
 
 rule c
-  command = ../clang $cflags -c $in -o $out
+  command = clang $cflags -c $in -o $out
   description = C2x $out
   depfile = $out.d
   deps = gcc
 
-rule pack
-  command = retro-biblio.sh $objs/calculat-sequent.o 
+rule assemble-maclibs
+  command = retro-biblio.sh $objs/calculat-sequent.o $objs/sinuativ-sequent.o
 
 build $objs/calculat-sequent.o: c calculat-sequent.c
-build $archive: $objs/calculat-sequent.o
-default notos
+build $objs/sinuativ-sequent.o: c sinuativ-sequent.c
+build $archive: $objs/calculat-sequent.o $objs/sinuativ-sequent.o
+default lib{$UNISON}.a
 

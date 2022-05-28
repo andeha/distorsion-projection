@@ -32,7 +32,7 @@ while [ $# -gt 0 ]; do
        shift
        debug_verbose="yes"
        ;;
-    -help | --help | -h | --h | -\?
+    -help | --help | -h | --h | -\? )
        usage
        exit 1
        ;;
@@ -41,7 +41,7 @@ done
 
 if [[ -n "$small" ]]; then
   if [[ -n "$debug_verbose" ]]; then
-    builtin echo "For Microchip Pic32 Mz and Mm"
+    builtin echo "For Microchip Pic32 Mm and Mz"
   fi
   builtin typeset -a UNISON=Town_mz
   ninja -f bld_mz-and-mm.ninja
