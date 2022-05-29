@@ -1,10 +1,14 @@
 #  bld_INTE-and-ARM.ninja | a math library for macos a․𝘬․a 𝙗𝙝𝙞𝙟𝙜.
 
-archive = lib{$UNISON}.a
-
+optflags = -g
+mac-library = lib{$UNISON}.a
 objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$archive
 sha1git = `git log -1 '--pretty=format:%h'`
-cflags = -DSHA1GIT=\"$sha1git\"
+cflags = $optflags {$PLATFLAGS} -DSHA1GIT=\"$sha1git\"
+
+rule assemble-maclib
+  command = ar rcs $out\_$sha1git.a $in                                    ; $
+   ln -f $out\_$sha1git.a $out.a ; printf $sha1git
 
 rule c
   command = clang $cflags -c $in -o $out
@@ -12,11 +16,9 @@ rule c
   depfile = $out.d
   deps = gcc
 
-rule assemble-maclibs
-  command = retro-biblio.sh $objs/calculat-sequent.o $objs/sinuativ-sequent.o
-
+build $mac-library:  assemble-maclib $objs/calculat-sequent.o                $
+ $objs/sinuativ-sequent.o
 build $objs/calculat-sequent.o: c calculat-sequent.c
 build $objs/sinuativ-sequent.o: c sinuativ-sequent.c
-build $archive: $objs/calculat-sequent.o $objs/sinuativ-sequent.o
 default lib{$UNISON}.a
 
