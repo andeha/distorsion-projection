@@ -4,7 +4,7 @@ builtin typeset BUNDLEID='ABCD1234'
 builtin typeset TEAMID='4321DCBA'
 
 builtin typeset small
-builtin typset signcode
+builtin typeset signcode
 builtin typeset debug_verbose
 
 function usage
