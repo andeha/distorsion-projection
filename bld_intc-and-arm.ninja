@@ -16,9 +16,7 @@ rule c
   depfile = $out.d
   deps = gcc
 
-build $mac-library:  assemble-maclib $objs/calculat-sequent.o                $
- $objs/sinuativ-sequent.o
-build $objs/calculat-sequent.o: c calculat-sequent.c
-build $objs/sinuativ-sequent.o: c sinuativ-sequent.c
+build $mac-library:  assemble-maclib $objs/calculat-sequent.o
+build $objs/calculator-sequent.o: c calculator-sequent.c
 default lib{$UNISON}.a
 
