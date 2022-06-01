@@ -2,7 +2,7 @@
 
 optflags = -g
 mac-library = lib{$UNISON}.a
-objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$archive
+objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$mac-library
 sha1git = `git log -1 '--pretty=format:%h'`
 cflags = $optflags {$PLATFLAGS} -DSHA1GIT=\"$sha1git\"
 
@@ -16,7 +16,7 @@ rule c
   depfile = $out.d
   deps = gcc
 
-build $mac-library:  assemble-maclib $objs/calculat-sequent.o
+build $mac-library: assemble-maclib $objs/calculator-sequent.o
 build $objs/calculator-sequent.o: c calculator-sequent.c
 default lib{$UNISON}.a
 

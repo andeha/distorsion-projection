@@ -49,8 +49,8 @@ if [[ -n "$small" ]]; then
     builtin echo "For Microchip Pic32 Mm and Mz"
   fi
   builtin typeset -gx UNISON=Town_mz
-  builtin typeset -gx pic32nda='-fforce-enable-int128 -mmsa =mdspr2 -gdwarf-5'
-  builtin typeset -gx PLATFLAGS='-target mipsel -mfloat-abi=hard -mcpu=mips32r5 -mabi=o32 -mfp64 $pic32nda -D__MZ__'
+  builtin typeset pic32nda='-fforce-enable-int128 -mmsa -mdspr2 -gdwarf-5'
+  builtin typeset -gx PLATFLAGS="-target mipsel -mfloat-abi=hard -mcpu=mips32r5 -mabi=o32 -mfp64 $pic32nda -D__MZ__"
   ninja -f bld_mz-and-mm.ninja
   builtin typeset -gx UNISON=Town_mm
   builtin typeset -gx PLATFLAGS='-target mipsel -mfloat-abi=soft -mcpu=mips32r6 -mabi=o32 -mmicromips -D__MM__'
