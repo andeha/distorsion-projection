@@ -1,13 +1,12 @@
-#  bld_intc-and-arm.ninja | a math library for macOS a․𝘬․a 𝙗𝙝𝙞𝙟𝙜.
+#  bld_mz-and-mm.ninja | math routines for Pic32Mm and Pic32Mz a․𝘬․a 𝙨𝙢𝙖𝙡𝙡.
 
 optflags = -g
-mac-library = lib{$UNISON}.a
-objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$mac-library
+archive = lib{$UNISON}.a
+objs = ./.objs/7703a312-559A-42ca-A992-eabcf8f87663_$archive
 sha1git = `git log -1 '--pretty=format:%h'`
-cflags = {$PLATFLAGS} $moduleflags $macoscflags $optflags -DSHA1GIT=\"$sha1git\"
-include identic-common.ninja
+cflags = {$PLATFLAGS} $moduleflags $optflags -DSHA1GIT=\"$sha1git\"
 
-rule assemble-maclib
+rule assemble-library
   command = ar rcs $out\_$sha1git.a $in                                    ; $
    ln -f $out\_$sha1git.a $out.a ; printf $sha1git
 
@@ -17,7 +16,7 @@ rule c
   depfile = $out.d
   deps = gcc
 
-build $mac-library: assemble-maclib $objs/calculator-sequent.o
+build $archive: assemble-library $objs/calculator-sequent.o                  $
 build $objs/calculator-sequent.o: c calculator-sequent.c
 default lib{$UNISON}.a
 

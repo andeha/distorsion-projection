@@ -1,0 +1,6 @@
+#  identic-common.ninja - for the libTown.a math library.
+commandline-sdkpath = /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+xcodeapp-sdkpath = /Applications/Xcode.app/Contents/Developer/Platforms/MacOS.sdk
+moduleflags = -fmodules-ts -fimplicit-modules -fmodule-map-file={$MAPFILE}
+macoscflags = -isysroot $commandline-sdkpath
+

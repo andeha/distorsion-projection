@@ -2,6 +2,7 @@
 
 builtin typeset BUNDLEID='ABCD1234'
 builtin typeset TEAMID='4321ABCD'
+builtin typeset MAPFILE='/Users/<user- or project folder>/Monitor/Apps/module.modulemap'
 
 builtin typeset progname=$0
 builtin typeset small
