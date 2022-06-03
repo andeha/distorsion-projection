@@ -8,8 +8,8 @@ include identic-common.ninja
 cflags = {$PLATFLAGS} $macosflags $moduleflags $optflags -DSHA1GIT=\"$sha1git\"
 
 rule assemble-maclib
-  command = ar rcs $out\_$sha1git.a $in                                    ; $
-   ln -f $out\_$sha1git.a $out.a ; printf $sha1git
+  command = ar rcs lib{$UNISON}\_$sha1git.a $in                           ; $
+   ln -f lib{$UNISON}\_$sha1git.a lib{$UNISON}.a ; printf $sha1git
 
 rule c
   command = clang $cflags $gencdflags -c $in -o $out

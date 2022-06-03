@@ -66,7 +66,7 @@ else
   builtin typeset -gx UNISON=projection-distorsion_arm
   builtin typeset -gx PLATFLAGS='-target x86_64-apple-darwin21.3.0'
   ninja -f bld_intc-and-arm.ninja
-  lipo -create -output libTown_macos.a libdistorsion-projection_intel.a     \
+  lipo -create -output libTown_macos.a libdistorsion-projection_intc.a      \
    libprojection-distorsion_arm.a
   if [[ -n "$signcode" ]]; then
     codesign -s ${TEAMID} -f -o runtime --timestamp -i ${BUNDLEID} libTown_macos.a
