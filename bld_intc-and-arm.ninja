@@ -4,8 +4,8 @@ optflags = -g
 mac-library = lib{$UNISON}.a
 objs = ./.objs/7704a312-558s-41ca-ab92-abcef8f81234_$mac-library
 sha1git = `git log -1 '--pretty=format:%h'`
-cflags = {$PLATFLAGS} $moduleflags $macoscflags $optflags -DSHA1GIT=\"$sha1git\"
 include identic-common.ninja
+cflags = {$PLATFLAGS} $macosflags $moduleflags $optflags -DSHA1GIT=\"$sha1git\"
 
 rule assemble-maclib
   command = ar rcs $out\_$sha1git.a $in                                    ; $

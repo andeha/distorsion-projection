@@ -4,6 +4,7 @@ optflags = -g
 archive = lib{$UNISON}.a
 objs = ./.objs/7703a312-559A-42ca-A992-eabcf8f87663_$archive
 sha1git = `git log -1 '--pretty=format:%h'`
+include identic-common.ninja
 cflags = {$PLATFLAGS} $moduleflags $optflags -DSHA1GIT=\"$sha1git\"
 
 rule assemble-library
@@ -16,7 +17,7 @@ rule c
   depfile = $out.d
   deps = gcc
 
-build $archive: assemble-library $objs/calculator-sequent.o                  $
+build $archive: assemble-library $objs/calculator-sequent.o
 build $objs/calculator-sequent.o: c calculator-sequent.c
 default lib{$UNISON}.a
 
