@@ -8,7 +8,7 @@ To compile multiple platforms with just one `.ninja` build file — as illustrat
 "$"simple_varname {
   ...
 }
-[a-zA-Z0-9_.-]*"{$"varname"}"[a-zA-Z0-9_.-]* {
+[a-zA-Z0-9_.-]*[=]?"{$"varname"}"[a-zA-Z0-9_.-]* {
   int count=p-start; char *key,*text;
   const char * onevar = strstr(start,"{$");
   const char * flag = strstr(start,"}");
