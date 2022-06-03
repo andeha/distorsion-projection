@@ -3,4 +3,5 @@ commandline-sdkpath = /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
 xcodeapp-sdkpath = /Applications/Xcode.app/Contents/Developer/Platforms/MacOS.sdk
 moduleflags = -fmodules-ts -fimplicit-modules -fmodule-map-file={$MAPFILE}
 macosflags = -isysroot $commandline-sdkpath
-
+gencdflags = -fblocks -fno-rtti -fno-coroutines-ts -fno-exceptions          $
+ -fno-builtin

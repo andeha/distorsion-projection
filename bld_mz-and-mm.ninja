@@ -12,7 +12,7 @@ rule assemble-library
    ln -f $out\_$sha1git.a $out.a ; printf $sha1git
 
 rule c
-  command = clang $cflags -c $in -o $out
+  command = clang $cflags $gencdflags -c $in -o $out
   description = C2x $out
   depfile = $out.d
   deps = gcc
