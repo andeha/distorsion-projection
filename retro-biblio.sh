@@ -61,14 +61,13 @@ else
   if [[ -n "$debug_verbose" ]]; then
     builtin echo "For Intel Mac and Arm Mac"
   fi
-  builtin typeset -gx UNISON=projection-distorsion_arm
-  builtin typeset -gx PLATFLAGS='-target arm64-apple-macos11 -D__armv8a__'
-  builtin typeset sha1git=`git log -1 '--pretty=format:%h'`
-  builtin typeset armcpu="lib${UNISON}_$sha1git.a"
-  ninja -f bld_intc-and-arm.ninja
   builtin typeset -gx UNISON=distorsion-projection_intc
+  builtin typeset -gx PLATFLAGS='-target arm64-apple-macos11 -D__armv8a__'
+  ninja -f bld_intc-and-arm.ninja
+  builtin typeset sha1git=`git log -1 '--pretty=format:%h'`
+  builtin typeset microchipcpu="lib${UNISON}_$sha1git.a"
+  builtin typeset -gx UNISON=projection-distorsion_arm
   builtin typeset -gx PLATFLAGS='-target x86_64-apple-darwin21.3.0'
-  builtin typeset intelcpu="lib${UNISON}_$sha1git.a"
   ninja -f bld_intc-and-arm.ninja
   lipo -create -output libTown_macos_$sha1git.a                              \
    libdistorsion-projection_intc_$sha1git.a                                  \
@@ -76,7 +75,8 @@ else
   if [[ -n "$signcode" ]]; then
     codesign -s ${TEAMID} -f -o runtime --timestamp -i ${BUNDLEID} libTown_macos_$sha1git.a
   fi
-  rm -f $intelcpu $armcpu
+  builtin typeset intelcpu="lib${UNISON}_$sha1git.a"
+  rm -f $intelcpu $microchipcpu
   ln -f libTown_macos_$sha1git.a libTown_macos.a
 fi
 
