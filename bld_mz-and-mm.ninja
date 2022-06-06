@@ -12,12 +12,21 @@ rule assemble-library
    ln -f lib{$UNISON}\_$sha1git.a lib{$UNISON}.a ; printf $sha1git
 
 rule c
-  command = clang $cflags $gencdflags -c $in -o $out
+  command = $compiler-pic32 $cflags $gencdflags -c $in -o $out
   description = C2x $out
   depfile = $out.d
   deps = gcc
 
-build $archive: assemble-library $objs/calculator-sequent.o
-build $objs/calculator-sequent.o: c calculator-sequent.c
+build $archive: assemble-library $objs/blipfizz-holc.o                      $
+ $objs/teleskop-strawber.o $objs/kursiv-catty.o                             $
+ $objs/audi-fisku.o $objs/logik-block.o $objs/walk-knitti.o                 $
+ $objs/comput-arkebus.o
+build $objs/blipfizz-holc.o: c satur-calculat.c
+build $objs/teleskop-strawber.o: c circula-convers.c
+build $objs/kursiv-catty.o: c napier-exponen.c
+build $objs/audi-fisku.o: c abundan-invert.c
+build $objs/logik-block.o: c iumoid-twothree.c
+build $objs/walk-knitti.o: c captu-radio.c
+build $objs/comput-arkebus.o: c sequent-sinuativ.c
 default lib{$UNISON}.a
 

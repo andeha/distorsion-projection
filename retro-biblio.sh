@@ -3,6 +3,7 @@
 builtin typeset BUNDLEID='ABCD1234'
 builtin typeset TEAMID='4321ABCD'
 builtin typeset -gx MAPFILE='/Users/<user- or project folder>/Monitor/Apps/module.modulemap'
+builtin typeset -gx TOOLS_SMALL='/Users/<user- or project folder>/mips-tools/12.0.0'
 
 builtin typeset progname=$0
 builtin typeset small
@@ -63,12 +64,20 @@ else
   builtin typeset -gx UNISON=distorsion-projection_intc
   builtin typeset -gx PLATFLAGS='-target arm64-apple-macos11 -D__armv8a__'
   ninja -f bld_intc-and-arm.ninja
+  builtin typeset sha1git=`git log -1 '--pretty=format:%h'`
+  builtin typeset spitfire="lib${UNISON}_$sha1git.a"
   builtin typeset -gx UNISON=projection-distorsion_arm
   builtin typeset -gx PLATFLAGS='-target x86_64-apple-darwin21.3.0'
   ninja -f bld_intc-and-arm.ninja
-  lipo -create -output libTown_macos.a libdistorsion-projection_intc.a      \
-   libprojection-distorsion_arm.a
+  lipo -create -output libTown_macos_$sha1git.a                              \
+   libdistorsion-projection_intc_$sha1git.a                                  \
+   libprojection-distorsion_arm_$sha1git.a
   if [[ -n "$signcode" ]]; then
-    codesign -s ${TEAMID} -f -o runtime --timestamp -i ${BUNDLEID} libTown_macos.a
+    codesign -s ${TEAMID} -f -o runtime --timestamp -i ${BUNDLEID} libTown_macos_$sha1git.a
   fi
+  builtin typeset haifa="lib${UNISON}_$sha1git.a"
+  # print $haifa
+  # print $spitfire
+  rm -f $haifa $spitfire
+  ln -f libTown_macos_$sha1git.a libTown_macos.a
 fi
