@@ -16,7 +16,7 @@ simd_tᵦ exponential(simd_tᵦ x) ⓣ
 } /* (1+tanh(x/2))/(1-tanh(x/2)) */
 
 struct sequent exponential(Sequenta x) ⓣ
-{ Sequenta one=product₋abelian(), two=redundant₋many(),param,eval,y,num,den;
+{ Sequenta one=product₋abelian(),two=redundant₋many(),param,eval,y,num,den;
    param = __builtin_fixpoint_div(x,two);
    eval = tanh(param,0);
    num = __builtin_fixpoint_add(one,eval);
