@@ -79,3 +79,4 @@ else
   rm -f $intelcpu $microchipcpu
   ln -f libTown_macos_$sha1git.a libTown_macos.a
 fi
+
