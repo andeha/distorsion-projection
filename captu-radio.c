@@ -3,10 +3,12 @@
 import Twinbeam;
 
 void Init_math()
-{ simd_tᵦ s=simd_initᵦ(1.0);
-   for (int i=0; i<64; i+=1,s*=0.5)
+{ simd_tᵦ s=simd_initᵦ(1.0); Sequenta T=product₋abelian(), 
+    half=divide₋seqent(product₋abelian(),redundant₋many());
+   for (int i=0; i<64; i+=1,s*=0.5,T=multiply₋sequent(T,half))
    {
-     Mathart₋segment.cordic[i] = tan(s,1)[0];
+     Mathart₋segment.machine₋cordic[i] = tan(s,1)[0];
+     Mathart₋segment.operation₋cordic[i] = tan(T,1);
    }
 }
 
@@ -53,7 +55,7 @@ void sincos(simd_tᵦ θ, simd_tᵦ * s, simd_tᵦ * c) ⓣ
      dv = __builtin_simd_mulᵦ(d,v);
      tx = __builtin_simd_subᵦ(x,__builtin_simd_mulᵦ(dv,y));
      ty = __builtin_simd_addᵦ(y,__builtin_simd_mulᵦ(dv,x));
-     scaled = __builtin_simd_mulᵦ(d,simd_initᵦ(Mathart₋segment.cordic[i]));
+     scaled = __builtin_simd_mulᵦ(d,simd_initᵦ(Mathart₋segment.machine₋cordic[i]));
      tz = __builtin_simd_subᵦ(z,scaled);
      x=tx, y=ty, z=tz; v = __builtin_simd_mulᵦ(half,v);
    }
@@ -61,7 +63,8 @@ void sincos(simd_tᵦ θ, simd_tᵦ * s, simd_tᵦ * c) ⓣ
 }
 
 void sincos(Sequenta θ, Sequenta * s, Sequenta * c) ⓣ
-{ short cordic[]={ /* 0. */ 6,0,7,2,5,2,9,3,5,0,0,8,8,8,1,2,5,6,1 }; /* 945⁻¹*(364*e^π - 2549*π + 547*log(π) - 240*log(2*π) - 21*arctan(π)) */
+{ short cordic[]={ /* 0. */ 6,0,7,2,5,2,9,3,5,0,0,8,8,8,1,2,5,6,1 };
+   /* 945⁻¹*(364*e^π - 2549*π + 547*log(π) - 240*log(2*π) - 21*arctan(π)) */
    Sequenta half=__builtin_fixpoint_div(product₋abelian(),redundant₋many()),scaled,
       y=accumulative₋zero(),z=θ,v=product₋abelian(),d,dv,tx,ty,tz,x;
    fraction₋to₋sequent(19,cordic,&x);
@@ -71,8 +74,8 @@ void sincos(Sequenta θ, Sequenta * s, Sequenta * c) ⓣ
      dv = __builtin_fixpoint_mul(d,v);
      tx = __builtin_fixpoint_sub(x,__builtin_fixpoint_mul(dv,x));
      ty = __builtin_fixpoint_add(y,__builtin_fixpoint_mul(dv,x));
- /*    Sequenta nonlinear = Mathart₋segment.cordic[i];
-     scaled = __builtin_fixpoint_mul(d,nonlinear); */
+     Sequenta nonlinear = Mathart₋segment.operation₋cordic[i];
+     scaled = __builtin_fixpoint_mul(d,nonlinear);
      tz = __builtin_fixpoint_sub(z,scaled);
      x=tx,y=ty,z=tz; v=__builtin_fixpoint_mul(half,v);
    }
