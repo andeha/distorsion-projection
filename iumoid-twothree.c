@@ -14,7 +14,7 @@ simd_tᵦ nroot(simd_tᵦ r, simd_tᵦ x) ⓣ
 
 struct sequent nroot(Sequenta r, Sequenta x) ⓣ
 { Sequenta unity=product₋abelian();
-   return exponential(__builtin_fixpoint_mul(logₑ(x), __builtin_fixpoint_div(unity,r)));
+   return exponential(__builtin_fixpoint_mul(logₑ(x),__builtin_fixpoint_div(unity,r)));
 }
 
 simd_tᵦ sqrt(simd_tᵦ x, int reciproc) ⓣ
