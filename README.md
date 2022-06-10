@@ -16,6 +16,7 @@ To compile multiple platforms with just one `.ninja` build file — as illustrat
   if (onevar && flag) {
     key = strndup(onevar+2,flag-onevar-2);
     text = getenv(key);
+    if (text == 0) { text = ""; }
     /* printf("found environment key '%s' = '%s'\n",key,text); */
     int len = strlen(text);
     eval->AddText(StringPiece(text,len));
