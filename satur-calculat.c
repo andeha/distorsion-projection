@@ -25,32 +25,32 @@ inexorable struct sequent tan(Sequenta x) ⓣ { return tan(x,0); }
 #pragma recto arccos x = π/2 - arcsin x
 
 simd_tᵦ sin(simd_tᵦ x, int arc) ⓣ
-{ simd_tᵦ c,s,one,two,x²,𝟷₋x²,₍𝟷₋x²₎⁰⁵,denom,param,atan;
+{ simd_tᵦ c,s,one,two,x²,𝟷₋x²,₍𝟷₋x²₎⁰⁵,den,arg,atan;
    if (arc) {
      one=simd_initᵦ(1.0),two=simd_initᵦ(2.0);
      x² = __builtin_simd_mulᵦ(x,x);
      𝟷₋x² = __builtin_simd_subᵦ(one,x²);
      ₍𝟷₋x²₎⁰⁵ = sqrt(𝟷₋x²,0);
-     denom = __builtin_simd_addᵦ(one,₍𝟷₋x²₎⁰⁵);
-     param = __builtin_simd_divᵦ(x,denom);
-     atan = arctan(param);
+     den = __builtin_simd_addᵦ(one,₍𝟷₋x²₎⁰⁵);
+     arg = __builtin_simd_divᵦ(x,den);
+     atan = arctan(arg);
      return __builtin_simd_mulᵦ(two,atan);
    }
    else { sincos(x,&s,&c); return s; }
 }
 
 struct sequent sin(Sequenta x, int arc) ⓣ
-{ Sequenta c,s,one,two,x²,𝟷₋x²,₍𝟷₋x²₎⁰⁵,denom,param,atan;
+{ Sequenta c,s,one,two,x²,𝟷₋x²,₍𝟷₋x²₎⁰⁵,den,arg,atan;
    if (arc) {
      one=product₋abelian(),two=redundant₋many();
      x² = __builtin_fixpoint_mul(x,x);
      𝟷₋x² = __builtin_fixpoint_sub(one,x²);
      ₍𝟷₋x²₎⁰⁵ = sqrt(𝟷₋x²,0);
-     denom = __builtin_fixpoint_add(one,₍𝟷₋x²₎⁰⁵);
-     param = __builtin_fixpoint_div(x,denom);
-     atan = arctan(param);
+     den = __builtin_fixpoint_add(one,₍𝟷₋x²₎⁰⁵);
+     arg = __builtin_fixpoint_div(x,den);
+     atan = arctan(arg);
      return __builtin_fixpoint_mul(two,atan);
-   } /* y = 2*arctan(x/(1+sqrt(1-x^2))) */
+   } /* y = 2*arctan(x/(1+sqrt(1-x^2))). */
    else { sincos(x,&s,&c); return s; }
 }
 

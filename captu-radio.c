@@ -4,11 +4,13 @@ import Twinbeam;
 
 void Init_math()
 { simd_tᵦ s=simd_initᵦ(1.0); Sequenta T=product₋abelian(), 
-    half=divide₋seqent(product₋abelian(),redundant₋many());
-   for (int i=0; i<64; i+=1,s*=0.5,T=multiply₋sequent(T,half))
+    half=divide_sequent(product₋abelian(),redundant₋many());
+   for (int i=0; i<64; i+=1)
    {
-     Mathart₋segment.machine₋cordic[i] = tan(s,1)[0];
+     Mathart₋segment.machine₋cordic[i] = simd_scalarᵦ(tan(s,1));
      Mathart₋segment.operation₋cordic[i] = tan(T,1);
+     s = __builtin_simd_mulᵦ(s,simd_initᵦ(0.5));
+     T = multiply_sequent(T,half);
    }
 }
 
@@ -22,14 +24,24 @@ __uint128_t ltᵦ(simd_tᵦ x, simd_tᵦ y)
    return SimdAND(difference.array.bits,mask);
 }
 
+inexorable inline double * Elem(simd_tᵦ * E, const int zeroOrOne)
+{
+#if defined __MM__
+#elif defined NON₋SIMD
+   return &E->dbls[zeroOrOne];
+#else
+   return &(((union 𝟸₋double *)E)->array.dbls[zeroOrOne]);
+#endif
+}
+
 simd_tᵦ selectᵦ(simd_tᵦ T, simd_tᵦ F, __uint128_t conditionᵦ)
 {
    union 𝟸₋double cond = { .array.bits=conditionᵦ };
    simd_tᵦ y;
-   if (cond.array.dbls[0]<0) { y[0] = T[0]; }
-   else { y[0] = F[0]; }
-   if (cond.array.dbls[1]<0) { y[1] = T[1]; }
-   else { y[1] = F[1]; }
+   if (cond.array.dbls[0]<0) { *Elem(&y,0) = *Elem(&T,0); }
+   else { *Elem(&y,0)=*Elem(&F,0); /* y[0] = F[0]; */ }
+   if (cond.array.dbls[1]<0) { *Elem(&y,1) = *Elem(&T,1); }
+   else { *Elem(&y,1) = *Elem(&F,1); }
    return y;
 }
 
@@ -57,7 +69,7 @@ void sincos(simd_tᵦ θ, simd_tᵦ * s, simd_tᵦ * c) ⓣ
      ty = __builtin_simd_addᵦ(y,__builtin_simd_mulᵦ(dv,x));
      scaled = __builtin_simd_mulᵦ(d,simd_initᵦ(Mathart₋segment.machine₋cordic[i]));
      tz = __builtin_simd_subᵦ(z,scaled);
-     x=tx, y=ty, z=tz; v = __builtin_simd_mulᵦ(half,v);
+     x=tx,y=ty,z=tz; v=__builtin_simd_mulᵦ(half,v);
    }
    *c=x, *s=y;
 }
