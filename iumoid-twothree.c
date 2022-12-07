@@ -1,4 +1,4 @@
-/*  iumoid-twothree.c | sqrt, nroot and power. */
+/*  iumoid-twothree.c | the sqrt and nroot and power. */
 
 import Twinbeam;
 
@@ -39,12 +39,12 @@ struct sequent power(Sequenta y, Sequenta r) ⓣ
    return exponential(__builtin_fixpoint_mul(r,logₑ(y)));
 }
 
-simd_tᵦ reciproc(simd_tᵦ x) ⓣ
+simd_tᵦ reciproc₋interval(simd_tᵦ x) ⓣ
 {
    return __builtin_simd_rcpᵦ(x);
 }
 
-struct sequent reciproc(Sequenta x) ⓣ
+struct sequent reciproc_sequent(Sequenta x) ⓣ
 {
    return __builtin_fixpoint_div(product₋abelian(),x);
 }
