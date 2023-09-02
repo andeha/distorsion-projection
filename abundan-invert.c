@@ -1,6 +1,6 @@
 /*  abundan-invert.c | natural logarithm. */
 
-import Twinbeam;
+#include "Twinbeam.h"
 
 extern simd_tᵦ tanh(simd_tᵦ,int) ⓣ;
 extern Sequenta tanh(Sequenta,int) ⓣ;

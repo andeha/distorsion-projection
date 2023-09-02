@@ -1,6 +1,6 @@
 /*  sequent-sinuativ.c | the words /sin/ and /cos/ and one is postponed. */
 
-import Twinbeam;
+#include "Twinbeam.h"
 
 simd_tᵦ tan(simd_tᵦ x, int arc) ⓣ
 { simd_tᵦ 𝟸⁻¹=simd_initᵦ(0.5),one=simd_initᵦ(1.0),b=simd_initᵦ(1.0),

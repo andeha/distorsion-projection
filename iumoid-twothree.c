@@ -1,6 +1,6 @@
 /*  iumoid-twothree.c | the sqrt and nroot and power. */
 
-import Twinbeam;
+#include "Twinbeam.h"
 
 extern simd_tᵦ exponential(simd_tᵦ) ⓣ;
 extern Sequenta exponential(Sequenta) ⓣ;

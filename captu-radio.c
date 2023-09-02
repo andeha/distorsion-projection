@@ -1,6 +1,6 @@
 /*  captu-radio.c | round at two 'distances' and 'points' in time. */
 
-import Twinbeam;
+#include "Twinbeam.h"
 
 void Init_math()
 { simd_tᵦ s=simd_initᵦ(1.0); Sequenta T=product₋abelian(), 
@@ -27,7 +27,7 @@ __uint128_t ltᵦ(simd_tᵦ x, simd_tᵦ y)
 inexorable inline double * Elem(simd_tᵦ * E, const int zeroOrOne)
 {
 #if defined __MM__
-#elif defined NON₋SIMD
+#elif defined usage₋serial₋𝚜𝚒𝚗𝚐𝚕𝚎₋𝚒𝚗𝚜𝚝𝚛𝚞𝚌𝚝𝚒𝚘𝚗₋𝚖𝚞𝚕𝚝𝚒𝚙𝚕𝚎₋𝚍𝚊t𝚊₋type
    return &E->dbls[zeroOrOne];
 #else
    return &(((union 𝟸₋double *)E)->array.dbls[zeroOrOne]);

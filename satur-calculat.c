@@ -1,6 +1,6 @@
 /*  satur-calculat.c | third row mathematical functions. */
 
-import Twinbeam;
+#include "Twinbeam.h"
 
 extern void sincos(simd_tᵦ x, simd_tᵦ * s, simd_tᵦ * c) ⓣ;
 extern void sincos(Sequenta x, Sequenta * s, Sequenta * c) ⓣ;
