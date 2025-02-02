@@ -3,7 +3,7 @@
 #include "Twinbeam.h"
 
 void Init_math()
-{ simd_tᵦ s=simd_initᵦ(1.0); Sequenta T=product₋abelian(), 
+{ simd_tᵦ s=simd_initᵦ(1.0); Sequent T=product₋abelian(), 
     half=divide_sequent(product₋abelian(),redundant₋many());
    for (int i=0; i<64; i+=1)
    {
@@ -51,8 +51,8 @@ simd_tᵦ sign(simd_tᵦ x) ⓣ
    return selectᵦ(negative,positive,conditionᵦ);
 }
 
-struct sequent sign(Sequenta x) ⓣ
-{ Sequenta zero=accumulative₋zero();
+struct sequent sign(Sequent x) ⓣ
+{ Sequent zero=accumulative₋zero();
    if (x.detail.frac < zero.detail.frac) { return __builtin_fixpoint_sub(zero,product₋abelian()); }
    else { return product₋abelian(); }
 }
@@ -74,10 +74,10 @@ void sincos(simd_tᵦ θ, simd_tᵦ * s, simd_tᵦ * c) ⓣ
    *c=x, *s=y;
 }
 
-void sincos(Sequenta θ, Sequenta * s, Sequenta * c) ⓣ
+void sincos(Sequent θ, Sequent * s, Sequent * c) ⓣ
 { short cordic[]={ /* 0. */ 6,0,7,2,5,2,9,3,5,0,0,8,8,8,1,2,5,6,1 };
    /* 945⁻¹*(364*e^π - 2549*π + 547*log(π) - 240*log(2*π) - 21*arctan(π)) */
-   Sequenta half=__builtin_fixpoint_div(product₋abelian(),redundant₋many()),scaled,
+   Sequent half=__builtin_fixpoint_div(product₋abelian(),redundant₋many()),scaled,
       y=accumulative₋zero(),z=θ,v=product₋abelian(),d,dv,tx,ty,tz,x;
    fraction₋to₋sequent(19,cordic,&x);
    for (int i=0; i<36; i+=1)
@@ -86,7 +86,7 @@ void sincos(Sequenta θ, Sequenta * s, Sequenta * c) ⓣ
      dv = __builtin_fixpoint_mul(d,v);
      tx = __builtin_fixpoint_sub(x,__builtin_fixpoint_mul(dv,x));
      ty = __builtin_fixpoint_add(y,__builtin_fixpoint_mul(dv,x));
-     Sequenta nonlinear = Mathart₋segment.operation₋cordic[i];
+     Sequent nonlinear = Mathart₋segment.operation₋cordic[i];
      scaled = __builtin_fixpoint_mul(d,nonlinear);
      tz = __builtin_fixpoint_sub(z,scaled);
      x=tx,y=ty,z=tz; v=__builtin_fixpoint_mul(half,v);

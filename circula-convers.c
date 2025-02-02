@@ -33,12 +33,12 @@ simd_tᵦ tanh(simd_tᵦ x, int arc) ⓣ
    } /* xϵ[-π,π] and 1/z,3/z,5/z,7/z,9/z,... */
 }
 
-struct sequent tanh(Sequenta x, int arc) ⓣ
-{ Sequenta acc=accumulative₋zero(), two=redundant₋many(), 
+struct sequent tanh(Sequent x, int arc) ⓣ
+{ Sequent acc=accumulative₋zero(), two=redundant₋many(), 
  one=product₋abelian();
    int64_t idx[]= { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 };
    if (arc)
-   { Sequenta k,A,B,den,zero=accumulative₋zero();
+   { Sequent k,A,B,den,zero=accumulative₋zero();
        for (int i=14; i>=1; i = i - 1)
        {
          int₋to₋sequent(idx[i],&k);
@@ -50,7 +50,7 @@ struct sequent tanh(Sequenta x, int arc) ⓣ
        return __builtin_fixpoint_div(x,den);
    }
    else
-   { Sequenta I,twoI,odd,z,sum;
+   { Sequent I,twoI,odd,z,sum;
       for (int i=8; i>=0; i = i - 1)
       {
         int₋to₋sequent(idx[i],&I);

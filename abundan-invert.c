@@ -3,7 +3,7 @@
 #include "Twinbeam.h"
 
 extern simd_tᵦ tanh(simd_tᵦ,int) ⓣ;
-extern Sequenta tanh(Sequenta,int) ⓣ;
+extern Sequent tanh(Sequent,int) ⓣ;
 
 simd_tᵦ logₑ(simd_tᵦ x) ⓣ
 { simd_tᵦ two=simd_initᵦ(2.0),one=simd_initᵦ(1.0), 
@@ -16,8 +16,8 @@ simd_tᵦ logₑ(simd_tᵦ x) ⓣ
    return y;
 } /* logₑ x = 2 tanh⁻¹((x-1)/(x+1)) */
 
-struct sequent logₑ(Sequenta x) ⓣ
-{ Sequenta two=redundant₋many(),one=product₋abelian(), 
+struct sequent logₑ(Sequent x) ⓣ
+{ Sequent two=redundant₋many(),one=product₋abelian(), 
    x₋1,x₊1,param,eval,y;
    x₋1 = __builtin_fixpoint_sub(x,one);
    x₊1 = __builtin_fixpoint_add(x,one);

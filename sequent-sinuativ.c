@@ -38,15 +38,15 @@ simd_tᵦ tan(simd_tᵦ x, int arc) ⓣ
    } /* acc = -1.0/((2*i - 1)/z + acc) */
 }
 
-struct sequent tan(Sequenta x, int arc) ⓣ
-{ Sequenta 𝟸⁻¹=accumulative₋zero(),one=product₋abelian(),
+struct sequent tan(Sequent x, int arc) ⓣ
+{ Sequent 𝟸⁻¹=accumulative₋zero(),one=product₋abelian(),
    b=product₋abelian(),x²=__builtin_fixpoint_mul(x,x),
    x²p₁=__builtin_fixpoint_add(x²,one);
    short zeroToNines[] = { /* 0. */ 5, 0 };
    fraction₋to₋sequent(1,zeroToNines,&𝟸⁻¹);
    if (arc)
    {
-      Sequenta a = __builtin_fixpoint_rsqrt(x²p₁),a₊b,𝟸⁻¹₍a₊b₎,ab,sqrt₍ab₎;
+      Sequent a = __builtin_fixpoint_rsqrt(x²p₁),a₊b,𝟸⁻¹₍a₊b₎,ab,sqrt₍ab₎;
       for (int i=0; i<25; i+=1)
       {
         a₊b = __builtin_fixpoint_add(a,b);
@@ -56,14 +56,14 @@ struct sequent tan(Sequenta x, int arc) ⓣ
         sqrt₍ab₎ = __builtin_fixpoint_sqrt(ab);
         b = sqrt₍ab₎;
       }
-      Sequenta y,r,m;
+      Sequent y,r,m;
       r = __builtin_fixpoint_sqrt(x²p₁);
       m = __builtin_fixpoint_mul(a,r);
       y = __builtin_fixpoint_div(x,m);
       return y;
    }
    else
-   { Sequenta zero=accumulative₋zero(),
+   { Sequent zero=accumulative₋zero(),
        ₋1=__builtin_fixpoint_sub(zero,product₋abelian()),
        acc=accumulative₋zero(),even,odd,ing,den;
       for (int i=0; i<14; i+=1)
